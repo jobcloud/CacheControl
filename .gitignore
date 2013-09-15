@@ -1,0 +1,5 @@
+/.idea
+/vendor
+/composer.lock
+!/bin/console
+!/bin/console.php

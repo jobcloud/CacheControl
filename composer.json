@@ -1,0 +1,36 @@
+{
+    "name": "crunch/cache-control",
+    "description": "Interact with apc/opcache in FPM-instances",
+    "type": "library",
+    "keywords": ["cache", "opcache", "apc"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sebastian Krebs",
+            "email": "krebs.seb@gmail.com",
+            "homepage": "http://www.kingcrunch.de",
+            "role": "Maintainer"
+        }
+    ],
+    "require": {
+        "symfony/console": "~2.3.3",
+        "crunch/fastcgi": "dev-master",
+        "php": ">=5.3.0"
+    },
+    "support": {
+        "email": "krebs.seb@gmail.com",
+        "issues": "https://github.com/KingCrunch/CacheControl/issues"
+    },
+    "autoload": {
+        "psr-0": { "Crunch\\CacheControl": "src" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "bin": ["bin/cache-control", "bin/cache-control.php"],
+    "config": {
+        "bin-dir": "bin"
+    }
+}
