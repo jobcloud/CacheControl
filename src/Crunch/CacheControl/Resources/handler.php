@@ -20,7 +20,7 @@ $result = array();
 switch ($_GET['x']) {
     case 'clear':
         if (in_array(OPCACHE, $handler)) {
-            $result[OPCACHE] = opcache_invalidate();
+            $result[OPCACHE] = opcache_reset();
         }
         if (in_array(APC, $handler)) {
             $result[APC] = apc_clear_cache();
