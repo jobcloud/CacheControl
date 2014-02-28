@@ -21,6 +21,11 @@ class Connector
         return $this->query('clear');
     }
 
+    public function fetchStatus ()
+    {
+        return $this->query('status');
+    }
+
     protected function query ($action)
     {
         $request = $this->connection->newRequest(
