@@ -1,0 +1,13 @@
+{
+    "directories": ["src", "bin"],
+    "finder": [
+        {
+            "name": "*.php",
+            "exclude": ["Tests"],
+            "in": "vendor"
+        }
+    ],
+    "main": "bin/cache-control",
+    "output": "cache-control.phar",
+    "stub": true
+}
