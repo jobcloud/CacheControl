@@ -28,11 +28,14 @@ class Connector
 
     protected function query ($action)
     {
+        $temporaryCheckout = sys_get_temp_dir() . '/cache-c' . uniqid() . '.php';
+        copy(__DIR__ . '/Resources/handler.php', $temporaryCheckout);
+
         $request = $this->connection->newRequest(
             array(
                 'GATEWAY_INTERFACE' => 'FastCGI/1.0',
                 'REQUEST_METHOD'    => 'GET',
-                'SCRIPT_FILENAME'   => __DIR__ . '/Resources/handler.php',
+                'SCRIPT_FILENAME'   => $temporaryCheckout,
                 'QUERY_STRING'      => "x=$action"
             )
         );
