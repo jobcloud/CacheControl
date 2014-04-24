@@ -28,7 +28,7 @@ class Connector
 
     protected function query ($action)
     {
-        $temporaryCheckout = sys_get_temp_dir() . '/cache-c' . uniqid() . '.php';
+        $temporaryCheckout = sys_get_temp_dir() . '/' . uniqid('cache-control') . '.php';
         copy(__DIR__ . '/Resources/handler.php', $temporaryCheckout);
 
         $request = $this->connection->newRequest(
@@ -43,6 +43,8 @@ class Connector
         $response = $this->connection->request($request);
 
         list ($header, $content) = explode("\r\n\r\n", $response->content, 2);
+
+        unlink($temporaryCheckout);
 
         return unserialize($content);
     }
