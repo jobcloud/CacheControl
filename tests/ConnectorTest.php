@@ -46,7 +46,7 @@ class ConnectorTest extends TestCase
         $request = null;
         Phake::verify($this->fastCgiConnection, Phake::times(1))->request(Phake::capture($request));
 
-        $this->assertEquals('x=status', $request->parameters['QUERY_STRING']);
+        $this->assertContains('cache-control.status', $request->parameters['SCRIPT_FILENAME']);
     }
 
     public function testClearRequest()
@@ -65,6 +65,6 @@ class ConnectorTest extends TestCase
         $request = null;
         Phake::verify($this->fastCgiConnection, Phake::times(1))->request(Phake::capture($request));
 
-        $this->assertEquals('x=clear', $request->parameters['QUERY_STRING']);
+        $this->assertContains('cache-control.clear', $request->parameters['SCRIPT_FILENAME']);
     }
 }

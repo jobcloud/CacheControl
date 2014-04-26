@@ -4,14 +4,14 @@
         backupGlobals="true"
         backupStaticAttributes="false"
         bootstrap="vendor/autoload.php"
-        cacheTokens="true"
+        cacheTokens="false"
         colors="true"
         convertErrorsToExceptions="true"
         convertNoticesToExceptions="true"
         convertWarningsToExceptions="true"
         forceCoversAnnotation="false"
         mapTestClassNameToCoveredClassName="false"
-        processIsolation="false"
+        processIsolation="true"
         stopOnError="false"
         stopOnFailure="false"
         stopOnIncomplete="false"
@@ -29,12 +29,13 @@
     </testsuites>
 
     <filter>
+        <whitelist processUncoveredFilesFromWhitelist="false">
+            <directory suffix=".php">src</directory>
+        </whitelist>
         <blacklist>
+            <directory>src/Resources</directory>
             <directory suffix=".php">vendor</directory>
             <directory suffix=".php">tests</directory>
         </blacklist>
-        <whitelist processUncoveredFilesFromWhitelist="true">
-            <directory suffix=".php">src</directory>
-        </whitelist>
     </filter>
 </phpunit>
