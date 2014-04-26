@@ -26,7 +26,7 @@
         "issues": "https://github.com/KingCrunch/CacheControl/issues"
     },
     "autoload": {
-        "psr-0": { "Crunch\\CacheControl": "src" }
+        "psr-4": { "Crunch\\CacheControl\\": "src" }
     },
     "extra": {
         "branch-alias": {
