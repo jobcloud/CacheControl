@@ -30,11 +30,10 @@ class ClearCommand extends Command
     {
         $info = $this->connector->clearCache();
         foreach ($info as $section => $success) {
-            $output->writeln("<info>$section found</info>");
             if ($success) {
-                $output->writeln("  <info>'$section' cleared</info>");
+                $output->writeln("<info>$section OK</info>");
             } else {
-                $output->writeln("  <comment>'$section' not cleared</comment>");
+                $output->writeln("<error>$section NOT OK</error>");
             }
         }
     }
