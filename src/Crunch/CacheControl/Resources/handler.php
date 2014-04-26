@@ -17,6 +17,10 @@ if (extension_loaded(APCU)) {
 }
 
 $result = array();
+if (!isset($_GET['x'])) {
+    return array();
+}
+
 switch ($_GET['x']) {
     case 'clear':
         if (in_array(OPCACHE, $handler)) {
