@@ -41,12 +41,20 @@ class ClearCommand extends Command
     protected function initialize (InputInterface $input, OutputInterface $output)
     {
         $host = $input->getOption('host');
-        if (substr($host, 0, 7) != 'unix://') {
+        if ($host[0] == '/') {
+            $host = 'unix:///' .  ltrim($host, '/');
+            $port = null;
+        } elseif (substr($host, 0, 7) != 'unix://') {
             list($host, $port) = array_pad(explode(':', $host, 2), 2, 9000);
         } else {
             $port = null;
         }
-        $this->connector = new Connector(new Client($host, $port));
+        $this->connector = $this->createConnectorInstance($host, $port);
         parent::initialize($input, $output);
+    }
+
+    protected function createConnectorInstance($host, $port)
+    {
+        return new Connector(new Client($host, $port));
     }
 }
