@@ -4,6 +4,7 @@
     "type": "library",
     "keywords": ["cache", "opcache", "apc"],
     "license": "MIT",
+    "prefer-stable": true,
     "authors": [
         {
             "name": "Sebastian Krebs",
