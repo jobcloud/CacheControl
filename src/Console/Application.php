@@ -9,10 +9,7 @@ class Application extends BaseApplication
     {
         return array_merge(
             parent::getDefaultCommands(),
-            array(
-                new ClearCommand(),
-                new StatusCommand()
-            )
+            array(new ClearCommand(), new StatusCommand())
         );
     }
 }
