@@ -39,9 +39,9 @@ class StatusCommand extends AbstractHandlerCommand
         $output->writeln('<info>APC/APCu SMA status</info>');
         $formattedLine = $formatter->formatBlock(
             array(
-                'Number segments     ' . sprintf('%12u', $status['sma']['num_seg']),
-                'Segment size        ' . sprintf('%12.2f', $status['sma']['seg_size'] / 1024 / 1024) .  ' MiB',
-                'Available Memory    ' . sprintf('%12.2f', $status['sma']['avail_mem'] / 1024 / 1024) . ' MiB',
+                sprintf('%-30s %9u', 'Number segments', $status['sma']['num_seg']),
+                sprintf('%-30s %9.2f', 'Segment size', $status['sma']['seg_size'] / 1024 / 1024) .  ' MiB',
+                sprintf('%-30s %9.2f', 'Available Memory', $status['sma']['avail_mem'] / 1024 / 1024) . ' MiB',
             ),
             'comment'
         );
@@ -50,14 +50,12 @@ class StatusCommand extends AbstractHandlerCommand
         $output->writeln('<info>APC/APCu user cache status</info>');
         $formattedLine = $formatter->formatBlock(
             array(
-                'Slots               ' . sprintf('%12u', $status['cache']['nslots']),
-                'Time To Live        ' . sprintf('%12u', $status['cache']['ttl']),
-                'Hits                ' . sprintf('%12u', $status['cache']['nhits']),
-                'Misses              ' . sprintf('%12u', $status['cache']['nmisses']),
-                'Inserts             ' . sprintf('%12u', $status['cache']['ninserts']),
-                'Entries             ' . sprintf('%12u', $status['cache']['nentries']),
-                'Expunges            ' . sprintf('%12u', $status['cache']['nexpunges']),
-                'Memory Size         ' . sprintf('%12.2f', $status['cache']['mem_size'] / 1024 / 1024) . ' Mib',
+                sprintf('%-30s %9u', 'Slots               ', $status['cache']['nslots']),
+                sprintf('%-30s %9.2f', 'Memory Size', $status['cache']['mem_size'] / 1024 / 1024) . ' Mib',
+                sprintf('%-30s %9u/%u', 'Hits/Misses', $status['cache']['nhits'], $status['cache']['nmisses']),
+                sprintf('%-30s %9u (%u/%u)', 'Entries (Inserts/Expunges)', $status['cache']['nentries'], $status['cache']['ninserts'], $status['cache']['nexpunges']),
+
+                sprintf('%-30s %9u', 'Time To Live', $status['cache']['ttl']),
             ),
             'comment'
         );
@@ -74,9 +72,7 @@ class StatusCommand extends AbstractHandlerCommand
                 'Time To Live        ' . sprintf('%12u', $status['system']['ttl']),
                 'Hits                ' . sprintf('%12u', $status['system']['nhits']),
                 'Misses              ' . sprintf('%12u', $status['system']['nmisses']),
-                'Inserts             ' . sprintf('%12u', $status['system']['ninserts']),
-                'Entries             ' . sprintf('%12u', $status['system']['nentries']),
-                'Expunges            ' . sprintf('%12u', $status['system']['nexpunges']),
+                sprintf('%-8s %9u (%u/%u)', 'Entries (Inserts/Expunges)', $status['system']['nentries'], $status['system']['ninserts'], $status['system']['nexpunges']),
                 'Memory Size         ' . sprintf('%12.2f', $status['system']['mem_size'] / 1024 / 1024) . ' Mib',
             ),
             'comment'
@@ -91,10 +87,8 @@ class StatusCommand extends AbstractHandlerCommand
         $output->writeln('<info>Opcache memory status</info>');
         $formattedLine = $formatter->formatBlock(
             array(
-                'Used Memory         ' . sprintf('%12.2f', $status['memory_usage']['used_memory'] / 1024 / 1024) . ' MiB',
-                'Free Memory         ' . sprintf('%12.2f', $status['memory_usage']['free_memory'] / 1024 / 1024) . ' MiB',
-                'Wasted Memory       ' . sprintf('%12.2f', $status['memory_usage']['wasted_memory'] / 1024 / 1024) . ' MiB',
-                'Wasted Memory rate  ' . sprintf('%12.2f', $status['memory_usage']['current_wasted_percentage']) . ' %',
+                sprintf('%-30s %9.2f MiB/%.2f MiB', 'Used/Free Memory', $status['memory_usage']['used_memory'] / 1024 / 1024, $status['memory_usage']['free_memory'] / 1024 / 1024),
+                sprintf('%-30s %9.2f MiB (%.2f%%)', 'Wasted Memory (rate)', $status['memory_usage']['wasted_memory'] / 1024 / 1024, $status['memory_usage']['current_wasted_percentage']),
             ),
             'comment'
         );
@@ -103,12 +97,8 @@ class StatusCommand extends AbstractHandlerCommand
         $output->writeln('<info>Opcache cache status</info>');
         $formattedLine = $formatter->formatBlock(
             array(
-                'Cached scripts      ' . sprintf('%12u', $status['opcache_statistics']['num_cached_scripts']),
-                'Cached keys         ' . sprintf('%12u', $status['opcache_statistics']['num_cached_keys']),
-                'Max. Cache keys     ' . sprintf('%12u', $status['opcache_statistics']['max_cached_keys']),
-                'Hits                ' . sprintf('%12u', $status['opcache_statistics']['hits']),
-                'Misses              ' . sprintf('%12u', $status['opcache_statistics']['misses']),
-                'Hit rate            ' . sprintf('%12.2f', $status['opcache_statistics']['opcache_hit_rate']) . ' %',
+                sprintf('%-30s %9u/%u (%u)', 'Cached scripts/keys (Max keys)', $status['opcache_statistics']['num_cached_scripts'],$status['opcache_statistics']['num_cached_keys'], $status['opcache_statistics']['max_cached_keys']),
+                sprintf('%-30s %9u/%u (%.2f%%)', 'Hits/Misses (rate)', $status['opcache_statistics']['hits'], $status['opcache_statistics']['misses'], $status['opcache_statistics']['opcache_hit_rate']),
             ),
             'comment'
         );
