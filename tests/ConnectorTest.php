@@ -25,9 +25,6 @@ class ConnectorTest extends TestCase
 
         Phake::when($this->fastCgiClient)->connect()->thenReturn($this->fastCgiConnection);
         Phake::when($this->fastCgiConnection)->newRequest(Phake::anyParameters())->thenCallParent();
-
-
-
     }
 
     public function testStatusRequest()

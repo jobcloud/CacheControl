@@ -2,6 +2,7 @@
 namespace Crunch\CacheControl\Console;
 
 use Crunch\CacheControl\Connector;
+use Crunch\CacheControl\Console\Helper\CacheControlHelper;
 use PHPUnit_Framework_TestCase as TestCase;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -16,6 +17,8 @@ class StatusCommandTest extends TestCase
     private $output;
     /** @var Connector|Mock */
     private $connector;
+    /** @var CacheControlHelper|Mock */
+    private $helper;
 
     /** @var StatusCommand|Mock */
     private $subject;
@@ -26,10 +29,12 @@ class StatusCommandTest extends TestCase
         $this->input = Phake::mock('\Symfony\Component\Console\Input\InputInterface');
         $this->output = Phake::mock('\Symfony\Component\Console\Output\OutputInterface');
         $this->connector = Phake::mock('\Crunch\CacheControl\Connector');
+        $this->helper = Phake::mock('\Crunch\CacheControl\Console\Helper\CacheControlHelper');
 
         $this->subject = phake::partialMock('\Crunch\CacheControl\Console\StatusCommand');
 
         Phake::when($this->subject)->createConnectorInstance(Phake::anyParameters())->thenReturn($this->connector);
+        Phake::when($this->subject)->getHelper('cache-control')->thenReturn($this->helper);
     }
 
     public function testStatusViaHostAndPort()

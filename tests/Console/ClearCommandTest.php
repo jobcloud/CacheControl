@@ -16,6 +16,8 @@ class ClearCommandTest extends TestCase
     private $output;
     /** @var Connector|Mock */
     private $connector;
+    /** @var CacheControlHelper|Mock */
+    private $helper;
 
     /** @var ClearCommand|Mock */
     private $subject;
@@ -26,10 +28,12 @@ class ClearCommandTest extends TestCase
         $this->input = Phake::mock('\Symfony\Component\Console\Input\InputInterface');
         $this->output = Phake::mock('\Symfony\Component\Console\Output\OutputInterface');
         $this->connector = Phake::mock('\Crunch\CacheControl\Connector');
+        $this->helper = Phake::mock('\Crunch\CacheControl\Console\Helper\CacheControlHelper');
 
         $this->subject = phake::partialMock('\Crunch\CacheControl\Console\ClearCommand');
 
         Phake::when($this->subject)->createConnectorInstance(Phake::anyParameters())->thenReturn($this->connector);
+        Phake::when($this->subject)->getHelper('cache-control')->thenReturn($this->helper);
     }
 
     public function testClearViaHostAndPort()
