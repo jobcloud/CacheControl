@@ -15,7 +15,7 @@
     ],
     "require": {
         "symfony/console": "~2.3",
-        "crunch/fastcgi": "dev-master@dev",
+        "crunch/fastcgi": "dev-master#ed263c6dac094c486e0b9e5a4edc7e6d77312caa",
         "php": ">=5.3.0"
     },
     "require-dev": {
