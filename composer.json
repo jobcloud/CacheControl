@@ -1,5 +1,5 @@
 {
-    "name": "crunch/cache-control",
+    "name": "jobcloud/cache-control",
     "description": "Interact with apc/opcache in FPM-instances",
     "type": "library",
     "keywords": ["cache", "opcache", "apc"],
